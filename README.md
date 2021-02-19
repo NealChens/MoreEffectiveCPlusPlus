@@ -104,3 +104,13 @@ update(dynamic_cast<SpecialWidget*>(&sw));// 错误! dynamic_cast 不能转换�
   
 reinterpret_cast。使用这个操作符的类型转换，其 的 转 换 结 果 几 乎 都 是 执 行 期 定 义 （ implementation-defined ）。 因 此,使 用reinterpret_casts 的代码很难移植。 
 reinterpret_casts 的最普通的用途就是在函数指针类型之间进行转换。
+
+## 异常
+
+**如果你需要一个方法，能够通知不可被忽略的异常状态，并且搜索栈空间（searching the stack）以便找到异常处理代码
+时，你还得确保局部对象的析构函数必须被调用，这时你就需要使用 C++的异常处理。** 
+
+### Item M9：使用析构函数防止资源泄漏 
+用 auto_ptr 对象代替 raw 指针，你将不再为堆对象不能被删除而担心，即使在抛出异常时，对象也能被及时删除。(因为 auto_ptr 的析构函数使用的是单对象形式的 delete，
+所以 auto_ptr 不能用于指向对象数组的指针。如果想让 auto_ptr 类似于一个数组模板，你必须自己写一个。在这种情况下，用 vector 代替array 可能更好。) 
+
