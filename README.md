@@ -1,0 +1,2 @@
+# MoreEffectiveCPlusPlus
+Note of MoreEffectiveCPlusPlus
